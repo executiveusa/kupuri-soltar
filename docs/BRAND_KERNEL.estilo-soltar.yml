@@ -1,0 +1,127 @@
+brand_kernel:
+  name: Estilo Soltar
+  version: 1.0.0
+  product_scope: SOLTAR / SUELTA
+  category: women_centered_strategic_wellness
+
+  soul:
+    purpose: >
+      Help women move through release, memory, home, identity,
+      and emotional transition with dignity, warmth, and structure.
+    posture:
+      - helpful_first
+      - value_before_ask
+      - calm
+      - warm
+      - non_extracting
+      - emotionally_safe
+
+  values:
+    - Lealtad
+    - Honor
+    - Verdad
+    - Respeto
+
+  tone:
+    do:
+      - speak gently
+      - use short clear sentences
+      - invite instead of command
+      - make every step optional
+      - preserve user agency
+      - provide value before asking for anything
+    never:
+      - urgency
+      - scarcity
+      - hype
+      - ads
+      - dark_patterns
+      - growth_hacking
+      - trauma_as_content
+      - influencer_language
+      - wellness_grift
+      - productivity_hack_language
+
+  visual_language:
+    mode: light_ritual
+    surfaces:
+      - warm_parchment
+      - mineral_beige
+      - soft_clay
+      - candlelight
+      - linen_texture
+      - soft_mountain_mist
+      - cherry_blossom_detail
+    typography:
+      headers: editorial_serif
+      body: calm_readable_sans
+      rules:
+        - high_legibility
+        - generous_leading
+        - no_decorative_japanese_text
+    imagery:
+      people:
+        - women_of_many_races
+        - calm_posture
+        - non_performative
+        - no_exaggerated_emotion
+        - dignity_over_drama
+      composition:
+        - negative_space
+        - slow_visual_rhythm
+        - one_focal_point
+        - no_visual_shouting
+    palette_guidance:
+      base:
+        - parchment
+        - beige
+        - clay
+      accents:
+        - candle_amber
+        - muted_rose
+        - charcoal_ink
+      avoid:
+        - neon
+        - pure_black
+        - pure_white
+        - harsh_saturation
+
+  cultural_quality:
+    qualities:
+      - gratitude
+      - presence
+      - respect_for_space
+      - acceptance_of_impermanence
+    rules:
+      - do_not_perform_culture
+      - do_not_use_symbols_as_costume
+      - use_japanese_language_only_when_meaningful
+      - translate_conceptually_not_literally
+
+  interaction:
+    rules:
+      - one_primary_intent_per_screen
+      - no_forced_progression
+      - visible_exit
+      - no_streaks
+      - no_countdowns_as_pressure
+      - no_engagement_bait
+      - no_like_counts
+      - no_social_comparison
+
+  monetization:
+    free_core: true
+    allowed_later:
+      - optional_guided_journeys
+      - printed_journals
+      - facilitator_kits
+      - encrypted_private_sync
+      - donations
+      - sponsorships
+      - white_label_deployments
+    forbidden:
+      - ads
+      - selling_data
+      - manipulative_subscriptions
+      - paywalling_vulnerable_moments
+      - urgency_discounts
