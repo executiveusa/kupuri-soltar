@@ -4,91 +4,78 @@ import { useState } from "react";
 import Link from "next/link";
 import type { SoltarStep } from "@/content/soltar/steps";
 
-interface ReflectionCardProps {
-  step: SoltarStep;
-  locale?: "es" | "en" | "ja";
-}
-
-export function ReflectionCard({ step, locale = "es" }: ReflectionCardProps) {
+export function ReflectionCard({ step, locale = "es" }: { step: SoltarStep; locale?: "es" | "en" | "ja" }) {
   const [text, setText] = useState("");
   const [saved, setSaved] = useState(false);
   const question = step.reflection[locale];
 
   const handleSave = () => {
     if (typeof window !== "undefined" && text.trim()) {
-      const key = `soltar_reflection_${step.id}`;
-      const entry = { text: text.trim(), savedAt: new Date().toISOString() };
-      localStorage.setItem(key, JSON.stringify(entry));
+      localStorage.setItem(
+        `soltar_reflection_${step.id}`,
+        JSON.stringify({ text: text.trim(), savedAt: new Date().toISOString() })
+      );
     }
     setSaved(true);
   };
 
   return (
-    <section
-      className="max-w-xl mx-auto px-6 py-16 animate-rise"
-      aria-labelledby="reflection-heading"
-    >
-      <div className="mb-8 text-center">
-        <p className="text-xs uppercase tracking-widest text-mountain-mist mb-1">
+    <div className="atmo-screen flex flex-col justify-center px-6 py-16 max-w-xl mx-auto min-h-screen">
+      <div className="mb-8 text-center animate-rise">
+        <span className="ornament mb-4">✾</span>
+        <p className="text-xs uppercase tracking-[0.25em] text-cream-dim/50 font-sans mb-1">
           {step.es} · Reflexión
         </p>
-        <h1
-          id="reflection-heading"
-          className="font-serif text-2xl text-charcoal-ink leading-snug"
-        >
+        <h1 className="font-serif text-display-sm text-cream">
           Un momento de reflexión
         </h1>
       </div>
 
-      <div className="p-6 bg-linen rounded border border-clay/20 mb-8">
-        <p className="text-charcoal-ink text-base leading-relaxed">{question}</p>
+      <div className="rounded-2xl border border-cream/15 bg-atmo-surface backdrop-blur-sm p-6 mb-8 animate-rise">
+        <p className="font-serif text-cream text-xl leading-relaxed italic">{question}</p>
       </div>
 
       {!saved ? (
         <>
-          <label htmlFor="reflection-text" className="block text-sm text-clay-dark mb-2">
-            Tu respuesta (opcional, solo tú la ves)
+          <label htmlFor="reflection-text" className="block text-xs text-cream-dim/60 font-sans mb-2 tracking-wide">
+            Tu respuesta — solo tú la ves
           </label>
           <textarea
             id="reflection-text"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="w-full h-36 px-4 py-3 rounded border border-beige bg-parchment text-charcoal-ink text-sm leading-relaxed resize-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay-dark placeholder:text-mountain-mist"
+            className="w-full h-36 px-4 py-3 rounded-2xl border border-cream/15 bg-atmo-surface text-cream text-sm leading-relaxed resize-none focus-visible:outline-2 focus-visible:outline-offset-2 placeholder:text-cream-dim/30 font-sans backdrop-blur-sm"
             placeholder="Escribe lo que quieras. O no escribas nada."
-            aria-describedby="reflection-privacy-note"
+            aria-describedby="reflection-privacy"
           />
-          <p id="reflection-privacy-note" className="text-xs text-mountain-mist mt-2">
-            Guardado solo en este dispositivo. No se comparte con nadie.
+          <p id="reflection-privacy" className="text-xs text-cream-dim/30 font-sans mt-2">
+            Guardado solo en este dispositivo. No se comparte.
           </p>
-
-          <div className="mt-6 flex flex-col sm:flex-row gap-4">
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 items-center animate-rise">
             <button
               onClick={handleSave}
-              className="px-6 py-3 bg-clay text-parchment text-sm rounded hover:bg-clay-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="pill-btn text-base"
             >
               {text.trim() ? "Guardar y continuar" : "Continuar sin escribir"}
             </button>
             <Link
               href={`/steps/${step.id}/complete`}
-              className="text-sm text-clay hover:text-clay-dark underline-offset-4 hover:underline text-center sm:text-left py-3"
+              className="font-serif italic text-cream-dim/60 hover:text-cream text-sm underline-offset-4 hover:underline transition-colors py-2"
             >
-              Saltarme la reflexión
+              Saltar la reflexión
             </Link>
           </div>
         </>
       ) : (
         <div className="text-center animate-rise">
-          <p className="text-sm text-clay-dark mb-6">
+          <p className="font-serif italic text-cream-dim text-base mb-6">
             {text.trim() ? "Reflexión guardada." : "Seguimos adelante."}
           </p>
-          <Link
-            href={`/steps/${step.id}/complete`}
-            className="inline-block px-6 py-3 bg-clay text-parchment text-sm rounded hover:bg-clay-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
+          <Link href={`/steps/${step.id}/complete`} className="pill-btn text-base">
             Continuar
           </Link>
         </div>
       )}
-    </section>
+    </div>
   );
 }

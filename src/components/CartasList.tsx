@@ -17,28 +17,18 @@ export function CartasList() {
   };
 
   return (
-    <section
-      className="max-w-2xl mx-auto px-6 py-12"
-      aria-labelledby="cartas-heading"
-    >
+    <div className="atmo-screen px-6 py-12 max-w-2xl mx-auto min-h-screen">
       <header className="mb-8">
-        <h1
-          id="cartas-heading"
-          className="font-serif text-3xl text-charcoal-ink mb-2"
-        >
-          Cartas de Soltar
-        </h1>
-        <p className="text-sm text-clay-dark leading-relaxed">
-          Palabras anónimas de personas en el mismo camino. Sin nombres. Sin
-          fotos. Sin conteos.
+        <span className="ornament mb-3">✾</span>
+        <h1 className="font-serif text-display-sm text-cream mb-2">Cartas de Soltar</h1>
+        <p className="text-sm text-cream-dim/60 font-sans leading-relaxed">
+          Palabras anónimas de personas en el mismo camino.
+          Sin nombres. Sin fotos. Sin conteos.
         </p>
       </header>
 
       {submitted && (
-        <div
-          role="status"
-          className="mb-8 p-4 bg-linen rounded border border-clay/30 text-sm text-clay-dark animate-rise"
-        >
+        <div role="status" className="mb-8 p-4 rounded-2xl border border-amber/25 bg-amber/8 text-sm text-cream-dim font-sans animate-rise">
           Tu carta fue recibida. Gracias por compartir.
         </div>
       )}
@@ -46,7 +36,7 @@ export function CartasList() {
       {!showForm && (
         <button
           onClick={() => setShowForm(true)}
-          className="mb-10 px-5 py-2.5 border border-clay text-clay-dark text-sm rounded hover:bg-beige transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="pill-btn text-base mb-10"
         >
           Escribir una carta
         </button>
@@ -55,30 +45,25 @@ export function CartasList() {
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="mb-10 p-6 bg-linen rounded border border-clay/20 animate-rise"
-          aria-label="Escribir una carta anónima"
+          className="mb-10 p-6 rounded-2xl border border-cream/15 bg-atmo-surface backdrop-blur-sm animate-rise"
         >
-          <p className="text-xs text-mountain-mist mb-3">
-            Comparte algo que soltaste, o algo que aún cargas. De forma
-            anónima.
+          <p className="text-xs text-cream-dim/40 font-sans mb-3">
+            Comparte algo que soltaste, o algo que aún cargas. De forma anónima.
           </p>
-          <label htmlFor="carta-text" className="sr-only">
-            Tu carta
-          </label>
+          <label htmlFor="carta-text" className="sr-only">Tu carta</label>
           <textarea
             id="carta-text"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="w-full h-32 px-4 py-3 rounded border border-beige bg-parchment text-charcoal-ink text-sm leading-relaxed resize-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay-dark placeholder:text-mountain-mist"
-            placeholder="Escribe lo que quieras compartir..."
+            className="w-full h-28 px-4 py-3 rounded-xl border border-cream/10 bg-atmo-deep/40 text-cream text-sm leading-relaxed resize-none focus-visible:outline-2 placeholder:text-cream-dim/25 font-sans"
+            placeholder="Escribe lo que quieras compartir…"
             required
             minLength={10}
-            aria-required="true"
           />
           <div className="mt-4 flex gap-3">
             <button
               type="submit"
-              className="px-5 py-2.5 bg-clay text-parchment text-sm rounded hover:bg-clay-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="pill-btn text-sm"
               disabled={text.trim().length < 10}
             >
               Enviar carta
@@ -86,7 +71,7 @@ export function CartasList() {
             <button
               type="button"
               onClick={() => { setShowForm(false); setText(""); }}
-              className="px-5 py-2.5 text-clay text-sm hover:text-clay-dark underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="font-serif italic text-cream-dim/50 hover:text-cream text-sm underline-offset-4 hover:underline transition-colors py-2"
             >
               Cancelar
             </button>
@@ -97,14 +82,12 @@ export function CartasList() {
       <ul className="space-y-6" role="list">
         {letters.map((letter) => (
           <li key={letter.id}>
-            <blockquote
-              className="border-l-2 border-clay/30 pl-5 py-1"
-            >
-              <p className="text-charcoal-ink text-sm leading-relaxed italic">
+            <blockquote className="border-l-2 border-sakura/30 pl-5 py-1">
+              <p className="font-serif italic text-cream text-base leading-relaxed">
                 &ldquo;{letter.text}&rdquo;
               </p>
               {letter.step && (
-                <footer className="mt-2 text-xs text-mountain-mist capitalize">
+                <footer className="mt-2 text-xs text-cream-dim/40 font-sans capitalize tracking-wide">
                   {letter.step}
                 </footer>
               )}
@@ -112,6 +95,6 @@ export function CartasList() {
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 }

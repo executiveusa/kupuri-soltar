@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function WelcomePage() {
   return (
     <>
-      <main id="main-content" className="bg-gradient-parchment min-h-screen">
-        <WelcomePause imageSrc="/images/soltar/02-welcome-ritual.png" />
+      <main id="main-content">
+        <WelcomePause />
       </main>
       <PillarFooter />
     </>

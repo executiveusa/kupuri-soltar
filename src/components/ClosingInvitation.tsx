@@ -2,34 +2,31 @@ import Link from "next/link";
 
 export function ClosingInvitation() {
   return (
-    <section
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16 text-center max-w-xl mx-auto"
-      aria-labelledby="closing-heading"
-    >
+    <div className="atmo-screen flex flex-col items-center justify-center min-h-screen px-6 py-16 text-center">
+      <span className="ornament text-2xl mb-8 animate-glow">✾</span>
+
       <div
-        className="text-7xl font-serif text-clay mb-8 animate-rise"
+        className="font-serif text-[6rem] text-cream/25 mb-6 animate-rise leading-none"
         aria-hidden="true"
+        style={{ fontWeight: 300 }}
       >
         道
       </div>
 
-      <h1
-        id="closing-heading"
-        className="font-serif text-3xl text-charcoal-ink mb-4 animate-rise"
-      >
+      <h1 className="font-serif text-display-sm text-cream mb-4 animate-rise">
         El corazón está ordenado.
       </h1>
 
-      <p className="text-clay-dark text-base leading-relaxed mb-12 max-w-sm animate-rise">
+      <p className="font-serif italic text-cream-dim text-xl mb-14 animate-rise">
         Volver cuando quieras.
       </p>
 
       <Link
         href="/"
-        className="text-sm text-clay hover:text-clay-dark underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 transition-colors"
+        className="font-sans text-xs text-cream-dim/60 hover:text-cream/80 tracking-widest uppercase underline-offset-4 hover:underline transition-colors"
       >
         Volver al inicio
       </Link>
-    </section>
+    </div>
   );
 }

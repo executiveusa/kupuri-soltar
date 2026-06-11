@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { QuietButton } from "./QuietButton";
+import Link from "next/link";
 
 interface RitualHeroProps {
   headline: string;
@@ -24,52 +24,66 @@ export function RitualHero({
 }: RitualHeroProps) {
   return (
     <section
-      className="min-h-[85vh] flex flex-col justify-center px-6 py-16 max-w-3xl mx-auto"
+      className="relative min-h-[92vh] flex items-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        <div className="animate-rise">
+      {/* Background image */}
+      {imageSrc && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={imageSrc}
+            alt={imageAlt ?? ""}
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-atmo-deep/80 via-atmo-deep/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-atmo-deep/70 via-transparent to-atmo-deep/20" />
+        </div>
+      )}
+
+      <div className="relative z-10 max-w-3xl mx-auto px-6 py-20 w-full">
+        <div className="max-w-md animate-rise">
+          {/* Ornament */}
+          <span className="ornament mb-4">✾</span>
+
           <h1
             id="hero-heading"
-            className="font-serif text-4xl md:text-5xl leading-tight text-charcoal-ink whitespace-pre-line mb-6"
+            className="font-serif text-display text-cream leading-tight whitespace-pre-line mb-5"
           >
             {headline}
           </h1>
-          <p className="text-clay-dark text-lg leading-relaxed whitespace-pre-line mb-10">
+
+          <p className="font-sans text-cream-dim text-base leading-relaxed whitespace-pre-line mb-2">
             {subheadline}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <QuietButton href={ctaHref} variant="primary">
+
+          <p className="font-serif italic text-sakura text-sm mb-10 tracking-wide">
+            Un ritual japonés para dejar ir y renacer.
+          </p>
+
+          {/* Step icons row */}
+          <div className="flex gap-6 mb-10 text-cream-dim text-xs font-sans tracking-wide opacity-70">
+            <span>衣 Ropa</span>
+            <span>本 Libros</span>
+            <span>思 Recuerdos</span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 items-start">
+            <Link href={ctaHref} className="pill-btn text-lg">
               {ctaLabel}
-            </QuietButton>
+            </Link>
             {ctaSecondaryLabel && ctaSecondaryHref && (
-              <QuietButton href={ctaSecondaryHref} variant="ghost">
+              <Link
+                href={ctaSecondaryHref}
+                className="font-serif text-cream-dim hover:text-cream underline-offset-4 hover:underline text-base italic py-3 transition-colors"
+              >
                 {ctaSecondaryLabel}
-              </QuietButton>
+              </Link>
             )}
           </div>
         </div>
-
-        {imageSrc && (
-          <div className="relative aspect-[4/5] rounded-sm overflow-hidden bg-beige">
-            <Image
-              src={imageSrc}
-              alt={imageAlt ?? ""}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        {!imageSrc && (
-          <div
-            className="aspect-[4/5] rounded-sm bg-beige flex items-center justify-center"
-            aria-hidden="true"
-          >
-            <span className="kanji text-6xl">松</span>
-          </div>
-        )}
       </div>
     </section>
   );

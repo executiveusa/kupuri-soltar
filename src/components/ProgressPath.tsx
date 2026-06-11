@@ -1,70 +1,50 @@
+import Link from "next/link";
 import { FiveStepPath } from "./FiveStepPath";
-import { QuietButton } from "./QuietButton";
 
 interface ProgressPathProps {
   completedSteps?: string[];
   currentStep?: string;
 }
 
-export function ProgressPath({
-  completedSteps = [],
-  currentStep,
-}: ProgressPathProps) {
-  const total = 5;
+export function ProgressPath({ completedSteps = [], currentStep }: ProgressPathProps) {
   const done = completedSteps.length;
 
   return (
-    <section
-      className="max-w-xl mx-auto px-6 py-12"
-      aria-labelledby="progress-heading"
-    >
+    <div className="atmo-screen px-6 py-12 max-w-xl mx-auto min-h-screen">
       <header className="mb-8 text-center">
-        <h1
-          id="progress-heading"
-          className="font-serif text-3xl text-charcoal-ink mb-2"
-        >
-          Mi camino
-        </h1>
-        <p className="text-sm text-clay-dark">
-          Cinco pasos, un mismo camino.
-        </p>
+        <span className="ornament mb-3">✾</span>
+        <h1 className="font-serif text-display-sm text-cream mb-2">Mi camino</h1>
+        <p className="text-sm text-cream-dim/60 font-sans">Cinco pasos, un mismo camino.</p>
       </header>
 
       {done > 0 && (
         <div
-          className="mb-8 p-4 bg-linen rounded border border-clay/20 text-center"
+          className="mb-6 p-4 rounded-2xl border border-amber/20 bg-amber/8 text-center"
           role="status"
-          aria-label={`${done} de ${total} pasos completados`}
         >
-          <p className="text-sm text-clay-dark">
-            {done === total
-              ? "El camino está completo."
-              : `${done} de ${total} pasos completados.`}
+          <p className="text-sm text-cream-dim font-sans">
+            {done === 5 ? "El camino está completo." : `${done} de 5 pasos completados.`}
           </p>
         </div>
       )}
 
-      <FiveStepPath
-        completedSteps={completedSteps}
-        currentStep={currentStep}
-        interactive={true}
-      />
+      <FiveStepPath completedSteps={completedSteps} currentStep={currentStep} interactive />
 
-      <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <div className="mt-10 flex justify-center">
         {currentStep ? (
-          <QuietButton href={`/steps/${currentStep}/intro`} variant="primary">
+          <Link href={`/steps/${currentStep}/intro`} className="pill-btn text-base">
             Continuar mi camino
-          </QuietButton>
+          </Link>
         ) : done === 0 ? (
-          <QuietButton href="/steps/ropa/intro" variant="primary">
+          <Link href="/steps/ropa/intro" className="pill-btn text-base">
             Comenzar el primer paso
-          </QuietButton>
-        ) : done === total ? (
-          <QuietButton href="/closing" variant="primary">
+          </Link>
+        ) : done === 5 ? (
+          <Link href="/closing" className="pill-btn text-base">
             Ver el cierre
-          </QuietButton>
+          </Link>
         ) : null}
       </div>
-    </section>
+    </div>
   );
 }

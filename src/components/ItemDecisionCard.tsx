@@ -4,10 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import type { SoltarStep } from "@/content/soltar/steps";
 
-interface ItemDecisionCardProps {
-  step: SoltarStep;
-}
-
 const exampleItems: Record<string, string[]> = {
   ropa: [
     "Abrigo que no has usado en dos años",
@@ -35,7 +31,7 @@ const exampleItems: Record<string, string[]> = {
     "Adornos que no te gustan pero no sabes tirar",
     "Regalos que nunca usaste",
     "Herramientas de hobbies que abandonaste",
-    "Artículos de cocina que compraste para recetas que no hiciste",
+    "Artículos de cocina para recetas que no hiciste",
   ],
   recuerdos: [
     "Fotografías duplicadas o borrosas",
@@ -46,74 +42,65 @@ const exampleItems: Record<string, string[]> = {
   ],
 };
 
-export function ItemDecisionCard({ step }: ItemDecisionCardProps) {
+export function ItemDecisionCard({ step }: { step: SoltarStep }) {
   const items = exampleItems[step.id] ?? [];
   const [decisions, setDecisions] = useState<Record<number, "keep" | "release" | null>>(
     Object.fromEntries(items.map((_, i) => [i, null]))
   );
 
-  const decide = (index: number, choice: "keep" | "release") => {
+  const decide = (index: number, choice: "keep" | "release") =>
     setDecisions((prev) => ({ ...prev, [index]: choice }));
-  };
 
   const allDecided = items.every((_, i) => decisions[i] !== null);
   const releaseCount = Object.values(decisions).filter((d) => d === "release").length;
 
   return (
-    <section
-      className="max-w-xl mx-auto px-6 py-12"
-      aria-labelledby="decision-heading"
-    >
-      <div className="mb-8 text-center">
-        <p className="text-xs uppercase tracking-widest text-mountain-mist mb-1">
-          Paso {step.order} — {step.es}
+    <div className="atmo-screen px-6 py-12 max-w-xl mx-auto">
+      <header className="mb-8 text-center">
+        <p className="text-xs uppercase tracking-[0.25em] text-cream-dim/50 font-sans mb-1">
+          {step.es} · Paso {step.order}
         </p>
-        <h1
-          id="decision-heading"
-          className="font-serif text-2xl text-charcoal-ink"
-        >
-          ¿Qué conservas, qué sueltas?
+        <h1 className="font-serif text-display-sm text-cream">
+          ¿Conservar o soltar?
         </h1>
-        <p className="mt-2 text-sm text-clay-dark">
-          Tómate el tiempo que necesites con cada uno.
+        <p className="text-sm text-cream-dim/60 font-sans mt-2">
+          Tómate el tiempo que necesites.
         </p>
-      </div>
+      </header>
 
-      <ul className="space-y-4" role="list">
+      <ul className="space-y-3" role="list">
         {items.map((item, i) => {
-          const decision = decisions[i];
+          const d = decisions[i];
           return (
             <li
               key={i}
-              className={`p-4 rounded border transition-colors ${
-                decision === "keep"
-                  ? "border-mountain-mist bg-beige/40"
-                  : decision === "release"
-                    ? "border-clay bg-linen"
-                    : "border-beige bg-parchment"
+              className={`rounded-2xl border p-4 transition-colors ${
+                d === "keep" ? "border-cream/20 bg-cream/8" :
+                d === "release" ? "border-amber/30 bg-amber/8" :
+                "border-cream/10 bg-atmo-surface"
               }`}
             >
-              <p className="text-sm text-charcoal-ink mb-3">{item}</p>
-              <div className="flex gap-3" role="group" aria-label={`Decisión para: ${item}`}>
+              <p className="text-sm text-cream-dim font-sans mb-3 leading-relaxed">{item}</p>
+              <div className="flex gap-2" role="group" aria-label={`Decisión: ${item}`}>
                 <button
                   onClick={() => decide(i, "keep")}
-                  className={`flex-1 py-2 px-3 text-xs rounded border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 ${
-                    decision === "keep"
-                      ? "border-mountain-mist bg-mountain-mist/20 text-charcoal-ink"
-                      : "border-beige hover:border-mountain-mist text-clay-dark"
+                  className={`flex-1 py-2 px-3 text-xs font-sans rounded-full border transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 ${
+                    d === "keep"
+                      ? "border-cream/40 bg-cream/15 text-cream"
+                      : "border-cream/15 text-cream-dim/60 hover:border-cream/25"
                   }`}
-                  aria-pressed={decision === "keep"}
+                  aria-pressed={d === "keep"}
                 >
                   Conservar
                 </button>
                 <button
                   onClick={() => decide(i, "release")}
-                  className={`flex-1 py-2 px-3 text-xs rounded border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 ${
-                    decision === "release"
-                      ? "border-clay bg-clay/10 text-clay-dark"
-                      : "border-beige hover:border-clay text-clay-dark"
+                  className={`flex-1 py-2 px-3 text-xs font-sans rounded-full border transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 ${
+                    d === "release"
+                      ? "border-amber/50 bg-amber/15 text-amber-glow"
+                      : "border-cream/15 text-cream-dim/60 hover:border-amber/25"
                   }`}
-                  aria-pressed={decision === "release"}
+                  aria-pressed={d === "release"}
                 >
                   Soltar
                 </button>
@@ -124,28 +111,23 @@ export function ItemDecisionCard({ step }: ItemDecisionCardProps) {
       </ul>
 
       {allDecided && (
-        <div className="mt-8 p-4 bg-linen rounded border border-clay/30 text-center animate-rise">
-          <p className="text-sm text-clay-dark">
+        <div className="mt-8 p-5 rounded-2xl border border-amber/25 bg-amber/8 text-center animate-rise">
+          <p className="font-serif italic text-cream text-base mb-5">
             {releaseCount > 0
               ? `Decidiste soltar ${releaseCount} ${releaseCount === 1 ? "cosa" : "cosas"}. Eso requiere valor.`
               : "Elegiste conservar todo por ahora. Eso también está bien."}
           </p>
-          <div className="mt-4">
-            <Link
-              href={`/steps/${step.id}/reflection`}
-              className="inline-block px-6 py-3 bg-clay text-parchment text-sm rounded transition-colors hover:bg-clay-dark focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              Continuar a la reflexión
-            </Link>
-          </div>
+          <Link href={`/steps/${step.id}/reflection`} className="pill-btn text-base">
+            Continuar a la reflexión
+          </Link>
         </div>
       )}
 
       {!allDecided && (
-        <p className="mt-6 text-center text-xs text-mountain-mist">
+        <p className="mt-6 text-center text-xs text-cream-dim/40 font-sans tracking-wide">
           Tómate el tiempo que necesites.
         </p>
       )}
-    </section>
+    </div>
   );
 }

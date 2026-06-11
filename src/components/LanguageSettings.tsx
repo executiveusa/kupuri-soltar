@@ -3,85 +3,66 @@
 import { useState, useEffect } from "react";
 import { localeLabels, type Locale } from "@/content/soltar/i18n";
 
-const STORAGE_KEY = "soltar_locale";
-
 export function LanguageSettings() {
   const [locale, setLocale] = useState<Locale>("es");
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (saved && saved in localeLabels) {
-      setLocale(saved);
-    }
+    const saved = localStorage.getItem("soltar_locale") as Locale | null;
+    if (saved && saved in localeLabels) setLocale(saved);
   }, []);
 
-  const handleChange = (newLocale: Locale) => {
-    setLocale(newLocale);
-    localStorage.setItem(STORAGE_KEY, newLocale);
+  const handleChange = (l: Locale) => {
+    setLocale(l);
+    localStorage.setItem("soltar_locale", l);
   };
 
   return (
-    <section
-      className="max-w-xl mx-auto px-6 py-12"
-      aria-labelledby="settings-heading"
-    >
-      <h1
-        id="settings-heading"
-        className="font-serif text-3xl text-charcoal-ink mb-8"
-      >
-        Ajustes
-      </h1>
+    <div className="atmo-screen px-6 py-12 max-w-xl mx-auto min-h-screen">
+      <header className="mb-10">
+        <span className="ornament mb-3">✾</span>
+        <h1 className="font-serif text-display-sm text-cream">Ajustes</h1>
+      </header>
 
-      <div className="mb-10">
-        <fieldset>
-          <legend className="text-sm font-medium text-charcoal-ink mb-4">
-            Idioma
-          </legend>
-          <div className="space-y-3">
-            {(Object.entries(localeLabels) as [Locale, string][]).map(
-              ([code, label]) => (
-                <label
-                  key={code}
-                  className={`flex items-center gap-3 p-4 rounded border cursor-pointer transition-colors ${
-                    locale === code
-                      ? "border-clay bg-linen"
-                      : "border-beige hover:border-clay/50"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="locale"
-                    value={code}
-                    checked={locale === code}
-                    onChange={() => handleChange(code)}
-                    className="accent-clay-dark"
-                  />
-                  <span className="text-charcoal-ink">{label}</span>
-                  {locale === code && (
-                    <span
-                      className="ml-auto text-xs text-clay"
-                      aria-hidden="true"
-                    >
-                      Activo
-                    </span>
-                  )}
-                </label>
-              )
-            )}
-          </div>
-        </fieldset>
-      </div>
+      <fieldset className="mb-10">
+        <legend className="text-xs uppercase tracking-[0.25em] text-cream-dim/50 font-sans mb-4">
+          Idioma
+        </legend>
+        <div className="space-y-3">
+          {(Object.entries(localeLabels) as [Locale, string][]).map(([code, label]) => (
+            <label
+              key={code}
+              className={`flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-colors ${
+                locale === code
+                  ? "border-amber/40 bg-amber/10 text-cream"
+                  : "border-cream/12 bg-atmo-surface text-cream-dim/70 hover:border-cream/20"
+              }`}
+            >
+              <input
+                type="radio"
+                name="locale"
+                value={code}
+                checked={locale === code}
+                onChange={() => handleChange(code)}
+                className="accent-amber"
+              />
+              <span className="font-serif text-lg">{label}</span>
+              {locale === code && (
+                <span className="ml-auto text-xs text-amber/70 font-sans tracking-wide">Activo</span>
+              )}
+            </label>
+          ))}
+        </div>
+      </fieldset>
 
-      <div className="p-5 bg-linen rounded border border-beige">
-        <h2 className="text-sm font-medium text-charcoal-ink mb-2">
+      <div className="p-5 rounded-2xl border border-cream/10 bg-atmo-surface backdrop-blur-sm">
+        <h2 className="text-xs uppercase tracking-[0.25em] text-cream-dim/50 font-sans mb-3">
           Privacidad
         </h2>
-        <p className="text-sm text-clay-dark leading-relaxed">
-          Tus reflexiones se guardan solo en este dispositivo. Nada se envía a
-          ningún servidor sin tu permiso. No hay cuenta, no hay perfil, no hay
-          seguimiento.
+        <p className="text-sm text-cream-dim/70 font-sans leading-relaxed">
+          Tus reflexiones se guardan solo en este dispositivo. Nada se envía a ningún servidor sin tu permiso.
+          No hay cuenta. No hay perfil. No hay seguimiento.
         </p>
       </div>
-    </section>
+    </div>
   );
 }

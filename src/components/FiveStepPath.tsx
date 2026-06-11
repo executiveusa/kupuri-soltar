@@ -13,64 +13,59 @@ export function FiveStepPath({
   interactive = true,
 }: FiveStepPathProps) {
   return (
-    <ol
-      className="space-y-3"
-      aria-label="Los cinco pasos del camino de soltar"
-    >
+    <ol className="space-y-3" aria-label="Los cinco pasos del camino de soltar">
       {soltarSteps.map((step) => {
         const isCompleted = completedSteps.includes(step.id);
         const isCurrent = step.id === currentStep;
 
-        const content = (
+        const inner = (
           <div
-            className={`flex items-center gap-4 p-4 rounded border transition-colors ${
-              isCompleted
-                ? "border-clay bg-beige/60 text-clay-dark"
-                : isCurrent
-                  ? "border-clay bg-linen text-charcoal-ink"
-                  : "border-beige bg-parchment text-charcoal-ink/60"
-            }`}
+            className={`step-row ${isCompleted ? "done" : ""} ${isCurrent ? "active" : ""}`}
           >
-            <span
-              className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-medium flex-shrink-0 ${
+            <div
+              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm flex-shrink-0 font-serif ${
                 isCompleted
-                  ? "bg-clay text-parchment"
+                  ? "bg-cream/20 text-cream"
                   : isCurrent
-                    ? "bg-clay/30 text-clay-dark"
-                    : "bg-beige text-mountain-mist"
+                    ? "bg-amber/30 text-amber-glow"
+                    : "bg-cream/8 text-cream-dim opacity-50"
               }`}
               aria-hidden="true"
             >
               {isCompleted ? "完" : step.order}
-            </span>
+            </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-baseline gap-3 flex-wrap">
-                <span className="font-medium">{step.es}</span>
-                <span className="text-xs text-mountain-mist">{step.ja}</span>
+                <span className={`font-serif text-lg ${isCurrent || isCompleted ? "text-cream" : "text-cream-dim opacity-60"}`}>
+                  {step.es}
+                </span>
+                <span className={`text-xs font-sans ${isCurrent ? "text-sakura" : "text-cream-dim opacity-40"}`}>
+                  {step.ja}
+                </span>
               </div>
-              <p className="text-xs mt-0.5 text-current opacity-70">
+              <p className={`text-xs font-sans mt-0.5 ${isCurrent || isCompleted ? "text-cream-dim" : "text-cream-dim opacity-40"}`}>
                 {step.description.es}
               </p>
             </div>
             {isCurrent && (
-              <span
-                className="text-xs text-clay-dark flex-shrink-0"
-                aria-label="Paso actual"
-              >
-                →
+              <span className="text-xs text-amber opacity-80 flex-shrink-0" aria-label="Paso actual">→</span>
+            )}
+            {isCompleted && (
+              <span className="text-xs text-cream-dim opacity-50 flex-shrink-0 font-sans">
+                {step.order === 5 ? "道" : "↓"}
               </span>
             )}
           </div>
         );
 
-        if (interactive && (isCompleted || isCurrent)) {
+        if (interactive && (isCompleted || isCurrent || true)) {
           return (
             <li key={step.id}>
               <Link
                 href={`/steps/${step.id}/intro`}
-                className="block focus-visible:outline-2 focus-visible:outline-offset-2 rounded"
+                className="block focus-visible:outline-2 focus-visible:outline-offset-2 rounded-full"
               >
-                {content}
+                {inner}
               </Link>
             </li>
           );
@@ -78,7 +73,7 @@ export function FiveStepPath({
 
         return (
           <li key={step.id} aria-current={isCurrent ? "step" : undefined}>
-            {content}
+            {inner}
           </li>
         );
       })}

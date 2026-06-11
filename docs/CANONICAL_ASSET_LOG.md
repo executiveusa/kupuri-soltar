@@ -4,31 +4,33 @@
 
 | ID | Filename | Route | Status | Notes |
 |---|---|---|---|---|
-| image_01_hero | 01-hero-soltar.png | / | pending/source-needed | Hero visual |
-| image_02_welcome | 02-welcome-ritual.png | /welcome | pending/source-needed | Welcome pause |
-| image_03_path_overview | 03-five-step-path.png | /journey | pending/source-needed | Journey overview |
-| image_04_step_intro | 04-step-intro-ropa.png | /steps/ropa/intro | pending/source-needed | Step 1 intro |
-| image_05_step_action | 05-step-action-ropa.png | /steps/ropa/action | pending/source-needed | Step 1 action |
-| image_06_reflection | 06-reflection-gratitude.png | /steps/ropa/reflection | pending/source-needed | Reflection screen |
-| image_07_completion | 07-step-complete.png | /steps/ropa/complete | pending/source-needed | Step 1 complete |
+| image_01_hero | 01-hero-soltar.png | / | installed | Hero — woman holding cloth, SUELTA mark |
+| image_02_welcome | 02-welcome-ritual.png | /welcome | installed | Welcome pause — candle, mountains, sakura |
+| image_03_path_overview | 03-five-step-path.png | /journey | installed | Five steps list (mobile UI reference) |
+| image_04_step_intro | 04-step-intro-ropa.png | /steps/ropa/intro | installed | Meditation mood — atmospheric background |
+| image_05_step_action | 05-step-action-ropa.png | /steps/ropa/action | pending/source-needed | Decision screen reference |
+| image_06_reflection | 06-reflection-gratitude.png | /steps/ropa/reflection | pending/source-needed | Reflection reference |
+| image_07_completion | 07-step-complete.png | /steps/ropa/complete | installed | Paso uno completado — 完 character |
 | image_08_bitacora | 08-bitacora.png | /bitacora | pending/source-needed | Essays reference |
 | image_09_cartas | 09-cartas-de-soltar.png | /cartas | pending/source-needed | Letters reference |
-| image_10_progress | 10-progress-journey.png | /progress | pending/source-needed | Progress view |
-| image_11_settings | 11-settings-language.png | /settings | pending/source-needed | Settings reference |
-| image_12_closing | 12-closing-invitation.png | /closing | pending/source-needed | Closing screen |
+| image_10_progress | 10-progress-journey.png | /progress | installed | Progress path with icons and status labels |
+| image_11_settings | 11-settings-language.png | /settings | installed | Ajustes — language selector |
+| image_12_closing | 12-closing-invitation.png | /closing | installed | El corazón está ordenado |
 
-## Social Images (Optional)
+## Brand / Social Images
 
-| ID | Filename | Platform | Status |
+| ID | Filename | Use | Status |
 |---|---|---|---|
-| ig_01_manifesto | ig-01-brand-manifesto.png | Instagram | optional/not-started |
-| ig_02_ritual_still | ig-02-ritual-still.png | Instagram | optional/not-started |
-| ig_03_path_infocard | ig-03-path-infocard.png | Instagram | optional/not-started |
-| tt_01_cover | tt-01-cover.png | TikTok | optional/not-started |
-| tt_02_intro | tt-02-intro-slate.png | TikTok | optional/not-started |
-| tt_03_tutorial | tt-03-tutorial-cover.png | TikTok | optional/not-started |
+| ig-01-brand-manifesto | ig-01-brand-manifesto.png | Instagram Week 1 Quote | installed |
+| ig-02-ritual-still | ig-02-ritual-still.png | Instagram Editorial | installed |
+| ig-03-path-infocard | ig-03-path-infocard.png | Instagram Week 3 | installed |
+| ig-04-manifesto-dark | ig-04-manifesto-dark.png | Instagram Trilingual | installed |
+| ig-05-three-women | ig-05-three-women.png | Instagram Identity | installed |
+| ig-06-paso-del-dia | ig-06-paso-del-dia.png | Instagram Paso del Día | installed |
+| tt-01-cover | tt-01-cover.png | TikTok Cover | installed |
+| tt-02-intro-slate | tt-02-intro-slate.png | TikTok Intro Slate | installed |
 
-## How to Update This Log
+## How to Update
 
-When you add an image file to `public/images/soltar/`, change its status from `pending/source-needed` to `installed`.
-Never mark installed unless the file physically exists in the repository.
+When you add a file to `public/images/soltar/`, change status from `pending/source-needed` to `installed`.
+Never mark installed unless the file physically exists.

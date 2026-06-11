@@ -1,5 +1,5 @@
 import type { SoltarStep } from "@/content/soltar/steps";
-import { QuietButton } from "./QuietButton";
+import Link from "next/link";
 
 interface StepIntroProps {
   step: SoltarStep;
@@ -13,36 +13,39 @@ export function StepIntro({ step, locale = "es" }: StepIntroProps) {
 
   return (
     <article
-      className="max-w-xl mx-auto px-6 py-16 animate-rise"
+      className="atmo-screen flex flex-col justify-center px-6 py-16 max-w-xl mx-auto"
       aria-labelledby={`step-${step.id}-heading`}
     >
-      <div className="mb-8 text-center">
-        <p className="text-xs uppercase tracking-widest text-mountain-mist mb-2">
+      <div className="mb-8 text-center animate-rise">
+        <p className="text-xs uppercase tracking-[0.25em] text-cream-dim opacity-50 font-sans mb-3">
           Paso {step.order} de 5
         </p>
-        <div className="kanji mb-4" aria-label={step.ja}>
-          {step.ja}
-        </div>
+        <div className="kanji mb-3" aria-label={step.ja}>{step.ja}</div>
         <h1
           id={`step-${step.id}-heading`}
-          className="font-serif text-3xl text-charcoal-ink"
+          className="font-serif text-display-sm text-cream"
         >
           {stepName}
         </h1>
-        <p className="mt-3 text-clay-dark text-sm">{description}</p>
+        <p className="mt-2 text-sakura text-sm font-sans italic">{description}</p>
       </div>
 
       <hr className="divider" />
 
-      <p className="text-charcoal-ink leading-relaxed text-base">{intro}</p>
+      <p className="font-serif text-cream-dim text-lg leading-relaxed animate-rise">
+        {intro}
+      </p>
 
-      <div className="mt-10 flex flex-col sm:flex-row gap-4">
-        <QuietButton href={`/steps/${step.id}/action`} variant="primary">
+      <div className="mt-10 flex flex-col sm:flex-row gap-4 items-center animate-rise">
+        <Link href={`/steps/${step.id}/action`} className="pill-btn text-base">
           Comenzar este paso
-        </QuietButton>
-        <QuietButton href="/journey" variant="ghost">
+        </Link>
+        <Link
+          href="/journey"
+          className="font-serif text-cream-dim hover:text-cream italic text-sm underline-offset-4 hover:underline py-2 transition-colors"
+        >
           Volver al camino
-        </QuietButton>
+        </Link>
       </div>
     </article>
   );

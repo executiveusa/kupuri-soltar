@@ -12,63 +12,65 @@ export function CompletionCard({ step, locale = "es" }: CompletionCardProps) {
   const nextStep = getNextStep(step.id);
 
   return (
-    <section
-      className="max-w-xl mx-auto px-6 py-16 text-center animate-rise"
-      aria-labelledby="completion-heading"
-    >
+    <div className="atmo-screen flex flex-col items-center justify-center min-h-screen px-6 py-16 text-center">
       <div
-        className="text-8xl font-serif text-clay mb-8"
+        className="font-serif text-9xl text-cream/40 mb-6 animate-rise leading-none"
         aria-label="Completado"
+        style={{ fontWeight: 300 }}
       >
         {step.completionChar}
       </div>
 
       <h1
-        id="completion-heading"
-        className="font-serif text-2xl text-charcoal-ink mb-4"
+        className="font-serif text-display-sm text-cream mb-4 animate-rise"
+        tabIndex={-1}
       >
         {message}
       </h1>
 
-      <p className="text-sm text-clay-dark leading-relaxed mb-12 max-w-sm mx-auto">
-        {step.order < 5
-          ? "Cuando quieras, el siguiente paso te espera. No hay prisa."
-          : "Has recorrido los cinco pasos. El corazón está ordenado."}
-      </p>
+      {step.order === 1 && (
+        <p className="font-serif italic text-cream-dim text-base mb-12 max-w-sm animate-rise">
+          La ropa se ha ordenado. La mente se ha aclarado.
+        </p>
+      )}
+      {step.order > 1 && step.order < 5 && (
+        <p className="font-sans text-cream-dim text-sm mb-12 max-w-sm animate-rise">
+          Cuando quieras, el siguiente paso te espera. No hay prisa.
+        </p>
+      )}
+      {step.order === 5 && (
+        <p className="font-serif italic text-sakura text-base mb-12 max-w-sm animate-rise">
+          El corazón está ordenado.
+        </p>
+      )}
 
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <div className="flex flex-col sm:flex-row gap-4 items-center animate-rise">
         {nextStep ? (
           <>
-            <Link
-              href={`/steps/${nextStep.id}/intro`}
-              className="px-6 py-3 bg-clay text-parchment text-sm rounded hover:bg-clay-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              Siguiente paso: {nextStep.es}
+            <Link href={`/steps/${nextStep.id}/intro`} className="pill-btn text-base">
+              Siguiente: {nextStep.es}
             </Link>
             <Link
               href="/journey"
-              className="px-6 py-3 text-clay text-sm hover:text-clay-dark underline-offset-4 hover:underline py-3"
+              className="font-serif italic text-cream-dim hover:text-cream text-sm underline-offset-4 hover:underline transition-colors py-2"
             >
               Ver mi camino
             </Link>
           </>
         ) : (
           <>
-            <Link
-              href="/closing"
-              className="px-6 py-3 bg-clay text-parchment text-sm rounded hover:bg-clay-dark transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
+            <Link href="/closing" className="pill-btn text-base">
               Terminar el camino
             </Link>
             <Link
               href="/progress"
-              className="px-6 py-3 text-clay text-sm hover:text-clay-dark underline-offset-4 hover:underline py-3"
+              className="font-serif italic text-cream-dim hover:text-cream text-sm underline-offset-4 hover:underline transition-colors py-2"
             >
               Ver mi progreso
             </Link>
           </>
         )}
       </div>
-    </section>
+    </div>
   );
 }

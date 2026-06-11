@@ -1,0 +1,68 @@
+version: "3.8"
+
+# Postiz — self-hosted social media manager for SUELTA / Kupuri Media
+# Docs: https://docs.postiz.com/installation/docker
+#
+# Usage:
+#   docker-compose -f docker-compose.postiz.yml up -d
+#
+# Then open http://localhost:5000 and connect Instagram, TikTok, Threads.
+# Copy your API key and set POSTIZ_API_KEY in your .env file.
+
+services:
+  postiz:
+    image: ghcr.io/gitroomhq/postiz-app:latest
+    container_name: suelta-postiz
+    restart: unless-stopped
+    environment:
+      MAIN_URL: "http://localhost:5000"
+      FRONTEND_URL: "http://localhost:5000"
+      NEXT_PUBLIC_BACKEND_URL: "http://localhost:3000"
+      JWT_SECRET: "${POSTIZ_JWT_SECRET:-change-me-in-production}"
+      DATABASE_URL: "postgresql://postiz:postiz@postiz-db:5432/postiz"
+      REDIS_URL: "redis://postiz-redis:6379"
+      BACKEND_INTERNAL_URL: "http://localhost:3000"
+      IS_GENERAL: "true"
+    ports:
+      - "5000:5000"
+      - "3000:3000"
+    depends_on:
+      postiz-db:
+        condition: service_healthy
+      postiz-redis:
+        condition: service_healthy
+    volumes:
+      - postiz-uploads:/app/uploads
+
+  postiz-db:
+    image: postgres:16-alpine
+    container_name: suelta-postiz-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: postiz
+      POSTGRES_USER: postiz
+      POSTGRES_PASSWORD: postiz
+    volumes:
+      - postiz-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postiz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postiz-redis:
+    image: redis:7-alpine
+    container_name: suelta-postiz-redis
+    restart: unless-stopped
+    volumes:
+      - postiz-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postiz-uploads:
+  postiz-db-data:
+  postiz-redis-data:

@@ -5,7 +5,7 @@ import Link from "next/link";
 interface QuietButtonProps {
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "pill" | "pill-light" | "ghost" | "ghost-light";
   children: React.ReactNode;
   className?: string;
   type?: "button" | "submit";
@@ -16,26 +16,20 @@ interface QuietButtonProps {
 export function QuietButton({
   href,
   onClick,
-  variant = "primary",
+  variant = "pill",
   children,
   className = "",
   type = "button",
   "aria-label": ariaLabel,
   disabled = false,
 }: QuietButtonProps) {
-  const base =
-    "inline-block px-6 py-3 rounded text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-3";
+  const variantClass =
+    variant === "pill" ? "pill-btn" :
+    variant === "pill-light" ? "pill-btn pill-btn-light" :
+    variant === "ghost" ? "font-serif text-cream underline-offset-4 hover:underline text-base tracking-wide" :
+    "font-serif text-ink underline-offset-4 hover:underline text-base tracking-wide";
 
-  const variants = {
-    primary:
-      "bg-clay text-parchment hover:bg-clay-dark disabled:opacity-50 disabled:cursor-not-allowed",
-    secondary:
-      "border border-clay text-clay-dark hover:bg-beige disabled:opacity-50 disabled:cursor-not-allowed",
-    ghost:
-      "text-clay-dark underline-offset-4 hover:underline disabled:opacity-50 disabled:cursor-not-allowed",
-  };
-
-  const classes = `${base} ${variants[variant]} ${className}`;
+  const classes = `${variantClass} ${disabled ? "opacity-40 cursor-not-allowed pointer-events-none" : ""} ${className}`;
 
   if (href && !disabled) {
     return (
