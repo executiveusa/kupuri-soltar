@@ -1,9 +1,9 @@
-# Image Manifest — SOLTAR / SUELTA
+# Image Manifest — SOLTAR
 
 ## Source Folder (Expected)
 
 **Windows path (original):**
-`E:\ACTIVE PROJECTS-PIPELINE\ACTIVE PROJECTS-PIPELINE\midday-suelta-app-main\midday-suelta-app-main\Images`
+`public/images/soltar/` (local repo path)
 
 **Repository target:**
 `public/images/soltar/`
@@ -14,7 +14,7 @@
 
 | ID | Filename | Route | Description |
 |---|---|---|---|
-| image_01_hero | `01-hero-soltar.png` | `/` | Woman holding folded clothing, warm parchment atmosphere, SUELTA mark. Phrase: *No es solo limpiar. Es soltar.* |
+| image_01_hero | `01-hero-soltar.png` | `/` | Woman holding folded clothing, warm parchment atmosphere, SOLTAR mark. Phrase: *No es solo limpiar. Es soltar.* |
 | image_02_welcome | `02-welcome-ritual.png` | `/welcome` | Calm interior with candle, blossom, mountains. Phrase: *Antes de soltar, vamos a tomar un respiro.* |
 | image_03_path_overview | `03-five-step-path.png` | `/journey` | Five steps listed vertically: Ropa, Libros, Papeles, Komono, Recuerdos |
 | image_04_step_intro | `04-step-intro-ropa.png` | `/steps/ropa/intro` | Intro screen for Step 1: Ropa with kanji, proverb/concept, and ritual tone |

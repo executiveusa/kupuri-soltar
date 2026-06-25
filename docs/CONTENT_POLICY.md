@@ -1,4 +1,4 @@
-# Content Policy — SOLTAR / SUELTA
+# Content Policy — SOLTAR
 
 ## Bitácora Essays
 

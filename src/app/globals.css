@@ -76,18 +76,12 @@ body {
 .atmo-screen {
   position: relative;
   min-height: 100vh;
-  background-color: var(--atmo-deep);
+  background:
+    linear-gradient(rgba(30,24,18,0.72), rgba(30,24,18,0.82)),
+    url('/images/soltar/02-welcome-ritual.png') center top / cover no-repeat;
 }
 .atmo-screen::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url('/images/soltar/02-welcome-ritual.png');
-  background-size: cover;
-  background-position: center top;
-  opacity: 0.55;
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 .atmo-screen > * { position: relative; z-index: 1; }
 

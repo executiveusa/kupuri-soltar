@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SueltaLogo } from "./SueltaLogo";
+import { SoltarLogo } from "./SoltarLogo";
 import { SiteNav } from "./SiteNav";
 
 export function SiteHeader({ light = false }: { light?: boolean }) {
@@ -14,9 +14,9 @@ export function SiteHeader({ light = false }: { light?: boolean }) {
         <Link
           href="/"
           className={`transition-opacity hover:opacity-70 ${textColor}`}
-          aria-label="SUELTA — Inicio"
+          aria-label="SOLTAR — Inicio"
         >
-          <SueltaLogo size={28} showWordmark={true} />
+          <SoltarLogo size={28} showWordmark={true} />
         </Link>
         <div className={textColor}>
           <SiteNav light={light} />

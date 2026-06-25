@@ -1,16 +1,16 @@
 /**
- * SUELTA / Kupuri Media — Social Media Strategy
+ * SOLTAR / Kupuri Media — Social Media Strategy
  *
- * Mission: Drive awareness of Kupuri Media through SUELTA,
+ * Mission: Drive awareness of Kupuri Media through SOLTAR,
  * the flagship women-centered wellness app.
  *
- * Core insight: SUELTA is the product. Kupuri Media is the producer.
+ * Core insight: SOLTAR is the product. Kupuri Media is the producer.
  * Let the product speak; brand the studio quietly in the footer.
  */
 
 export const strategy = {
   mission:
-    "Establish SUELTA as the leading Spanish-language women's intentional living app, " +
+    "Establish SOLTAR as the leading Spanish-language women's intentional living app, " +
     "positioning Kupuri Media as the studio behind culturally resonant digital experiences.",
 
   audience: {
@@ -71,7 +71,7 @@ export const strategy = {
   ],
 
   hashtags: {
-    primary: ["#suelta", "#soltar", "#kupurimedia"],
+    primary: ["#soltar", "#kupurimedia"],
     secondary: ["#bienestar", "#mujer", "#konmari", "#dejarir"],
     cultural: ["#手放す", "#片付け", "#ミニマリスト"],
     discovery: ["#vidaplena", "#mindfulness", "#orden", "#interiores"],
@@ -84,7 +84,7 @@ export const strategy = {
   },
 
   kupuriMediaPositioning:
-    "Kupuri Media appears in the footer line ('SUELTA · Kupuri Media') " +
+    "Kupuri Media appears in the footer line ('SOLTAR · Kupuri Media') " +
     "and in bio descriptions. The brand earns awareness through product quality, " +
     "not explicit self-promotion.",
 };

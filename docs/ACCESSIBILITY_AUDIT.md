@@ -1,4 +1,4 @@
-# Accessibility Audit — SOLTAR / SUELTA
+# Accessibility Audit — SOLTAR
 
 ## Status
 

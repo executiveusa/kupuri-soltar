@@ -2,88 +2,52 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface RitualHeroProps {
-  headline: string;
-  subheadline: string;
-  ctaLabel: string;
-  ctaHref: string;
-  ctaSecondaryLabel?: string;
-  ctaSecondaryHref?: string;
-  imageSrc?: string;
-  imageAlt?: string;
+  imageSrc: string;
+  ctaHref?: string;
 }
 
 export function RitualHero({
-  headline,
-  subheadline,
-  ctaLabel,
-  ctaHref,
-  ctaSecondaryLabel,
-  ctaSecondaryHref,
   imageSrc,
-  imageAlt,
+  ctaHref = "/welcome",
 }: RitualHeroProps) {
   return (
     <section
-      className="relative min-h-[92vh] flex items-center overflow-hidden"
-      aria-labelledby="hero-heading"
+      className="relative min-h-screen overflow-hidden bg-atmo-deep"
+      aria-label="SOLTAR — inicio"
     >
-      {/* Background image */}
-      {imageSrc && (
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={imageSrc}
-            alt={imageAlt ?? ""}
-            fill
-            className="object-cover object-center"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-atmo-deep/80 via-atmo-deep/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-atmo-deep/70 via-transparent to-atmo-deep/20" />
-        </div>
-      )}
+      <Image
+        src={imageSrc}
+        alt="SOLTAR — No es solo limpiar. Es soltar. Mujer sosteniendo ropa doblada con calma, en un ambiente de luz cálida y flor de cerezo."
+        fill
+        priority
+        className="object-cover object-center"
+        sizes="100vw"
+      />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-6 py-20 w-full">
-        <div className="max-w-md animate-rise">
-          {/* Ornament */}
-          <span className="ornament mb-4">✾</span>
+      {/* Screen-reader accessible content for baked-in image text */}
+      <div className="sr-only">
+        <h1>SOLTAR</h1>
+        <p>No es solo limpiar. Es soltar.</p>
+        <p>Un camino tranquilo para ordenar afuera y hacer espacio adentro.</p>
+        <p>Un ritual japonés para dejar ir y renacer.</p>
+      </div>
 
-          <h1
-            id="hero-heading"
-            className="font-serif text-display text-cream leading-tight whitespace-pre-line mb-5"
-          >
-            {headline}
-          </h1>
+      {/* Transparent clickable overlay over the baked-in CTA area */}
+      <Link
+        href={ctaHref}
+        aria-label="Comenzar mi camino — SOLTAR"
+        className="absolute left-[5%] bottom-[12%] h-[56px] w-[72%] max-w-[320px] rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura sm:left-[12%] sm:bottom-[18%]"
+      />
 
-          <p className="font-sans text-cream-dim text-base leading-relaxed whitespace-pre-line mb-2">
-            {subheadline}
-          </p>
-
-          <p className="font-serif italic text-sakura text-sm mb-10 tracking-wide">
-            Un ritual japonés para dejar ir y renacer.
-          </p>
-
-          {/* Step icons row */}
-          <div className="flex gap-6 mb-10 text-cream-dim text-xs font-sans tracking-wide opacity-70">
-            <span>衣 Ropa</span>
-            <span>本 Libros</span>
-            <span>思 Recuerdos</span>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 items-start">
-            <Link href={ctaHref} className="pill-btn text-lg">
-              {ctaLabel}
-            </Link>
-            {ctaSecondaryLabel && ctaSecondaryHref && (
-              <Link
-                href={ctaSecondaryHref}
-                className="font-serif text-cream-dim hover:text-cream underline-offset-4 hover:underline text-base italic py-3 transition-colors"
-              >
-                {ctaSecondaryLabel}
-              </Link>
-            )}
-          </div>
-        </div>
+      {/* Visible mobile CTA below image for accessibility on small screens */}
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-5 sm:hidden">
+        <Link
+          href={ctaHref}
+          className="pill-btn text-base"
+          aria-label="Comenzar mi camino"
+        >
+          Comenzar mi camino
+        </Link>
       </div>
     </section>
   );

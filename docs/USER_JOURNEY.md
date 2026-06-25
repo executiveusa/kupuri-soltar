@@ -1,4 +1,4 @@
-# User Journey — SOLTAR / SUELTA
+# User Journey — SOLTAR
 
 ## Journey Map
 

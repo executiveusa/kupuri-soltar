@@ -4,7 +4,7 @@
 
 | ID | Filename | Route | Status | Notes |
 |---|---|---|---|---|
-| image_01_hero | 01-hero-soltar.png | / | installed | Hero — woman holding cloth, SUELTA mark |
+| image_01_hero | 01-hero-soltar.png | / | installed | Hero — woman holding cloth, SOLTAR mark |
 | image_02_welcome | 02-welcome-ritual.png | /welcome | installed | Welcome pause — candle, mountains, sakura |
 | image_03_path_overview | 03-five-step-path.png | /journey | installed | Five steps list (mobile UI reference) |
 | image_04_step_intro | 04-step-intro-ropa.png | /steps/ropa/intro | installed | Meditation mood — atmospheric background |

@@ -1,4 +1,4 @@
-export interface SueltaQuote {
+export interface SoltarQuote {
   id: string;
   es: string;
   en: string;
@@ -7,7 +7,7 @@ export interface SueltaQuote {
   imageSlot: "dark-moody" | "parchment" | "editorial";
 }
 
-export const quotes: SueltaQuote[] = [
+export const quotes: SoltarQuote[] = [
   {
     id: "q01",
     es: "No hay fuego más grande que el de un corazón que aprende a soltar.",
