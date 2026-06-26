@@ -8,11 +8,11 @@
 | image_02_welcome | 02-welcome-ritual.png | /welcome | installed | Welcome pause — candle, mountains, sakura |
 | image_03_path_overview | 03-five-step-path.png | /journey | installed | Five steps list (mobile UI reference) |
 | image_04_step_intro | 04-step-intro-ropa.png | /steps/ropa/intro | installed | Meditation mood — atmospheric background |
-| image_05_step_action | 05-step-action-ropa.png | /steps/ropa/action | pending/source-needed | Decision screen reference |
-| image_06_reflection | 06-reflection-gratitude.png | /steps/ropa/reflection | pending/source-needed | Reflection reference |
+| image_05_step_action | 05-step-action-ropa.png | /steps/ropa/action | pending/user-install | Hands folding clothing on dark wood, candle, sakura |
+| image_06_reflection | 06-reflection-gratitude.png | /steps/ropa/reflection | pending/user-install | Woman sitting by window, cherry blossom view, candle |
 | image_07_completion | 07-step-complete.png | /steps/ropa/complete | installed | Paso uno completado — 完 character |
-| image_08_bitacora | 08-bitacora.png | /bitacora | pending/source-needed | Essays reference |
-| image_09_cartas | 09-cartas-de-soltar.png | /cartas | pending/source-needed | Letters reference |
+| image_08_bitacora | 08-bitacora.png | /bitacora | pending/user-install | Open journal, candle, tea cup, sakura branch |
+| image_09_cartas | 09-cartas-de-soltar.png | /cartas | pending/user-install | Wax-sealed envelope, dried flowers, sakura petals |
 | image_10_progress | 10-progress-journey.png | /progress | installed | Progress path with icons and status labels |
 | image_11_settings | 11-settings-language.png | /settings | installed | Ajustes — language selector |
 | image_12_closing | 12-closing-invitation.png | /closing | installed | El corazón está ordenado |

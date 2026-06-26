@@ -1,13 +1,39 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FiveStepPath } from "./FiveStepPath";
+import { soltarSteps } from "@/content/soltar/steps";
 
-interface ProgressPathProps {
-  completedSteps?: string[];
-  currentStep?: string;
-}
+export function ProgressPath() {
+  const [completedSteps, setCompletedSteps] = useState<string[]>([]);
+  const [currentStep, setCurrentStep] = useState<string | undefined>(undefined);
+  const [ready, setReady] = useState(false);
 
-export function ProgressPath({ completedSteps = [], currentStep }: ProgressPathProps) {
+  useEffect(() => {
+    const completed = soltarSteps
+      .filter((s) => {
+        const reflection = localStorage.getItem(`soltar_reflection_${s.id}`);
+        return reflection !== null;
+      })
+      .map((s) => s.id);
+
+    setCompletedSteps(completed);
+
+    const next = soltarSteps.find((s) => !completed.includes(s.id));
+    setCurrentStep(next?.id);
+    setReady(true);
+  }, []);
+
   const done = completedSteps.length;
+
+  if (!ready) {
+    return (
+      <div className="atmo-screen px-6 py-12 max-w-xl mx-auto min-h-screen flex items-center justify-center">
+        <span className="ornament animate-glow">✾</span>
+      </div>
+    );
+  }
 
   return (
     <div className="atmo-screen px-6 py-12 max-w-xl mx-auto min-h-screen">
@@ -24,6 +50,14 @@ export function ProgressPath({ completedSteps = [], currentStep }: ProgressPathP
         >
           <p className="text-sm text-cream-dim font-sans">
             {done === 5 ? "El camino está completo." : `${done} de 5 pasos completados.`}
+          </p>
+        </div>
+      )}
+
+      {done === 0 && (
+        <div className="mb-6 p-4 rounded-2xl border border-cream/10 bg-atmo-surface text-center">
+          <p className="text-sm text-cream-dim/60 font-sans">
+            Tu camino comienza cuando estés lista.
           </p>
         </div>
       )}

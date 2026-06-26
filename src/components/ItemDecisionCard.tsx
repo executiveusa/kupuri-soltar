@@ -55,7 +55,10 @@ export function ItemDecisionCard({ step }: { step: SoltarStep }) {
   const releaseCount = Object.values(decisions).filter((d) => d === "release").length;
 
   return (
-    <div className="atmo-screen px-6 py-12 max-w-xl mx-auto">
+    <div
+      className="atmo-screen px-6 py-12 max-w-xl mx-auto"
+      style={{ background: "linear-gradient(rgba(30,24,18,0.72), rgba(30,24,18,0.82)), url('/images/soltar/05-step-action-ropa.png') center / cover no-repeat" }}
+    >
       <header className="mb-8 text-center">
         <p className="text-xs uppercase tracking-[0.25em] text-cream-dim/50 font-sans mb-1">
           {step.es} · Paso {step.order}

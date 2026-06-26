@@ -17,7 +17,10 @@ export function CartasList() {
   };
 
   return (
-    <div className="atmo-screen px-6 py-12 max-w-2xl mx-auto min-h-screen">
+    <div
+      className="atmo-screen px-6 py-12 max-w-2xl mx-auto min-h-screen"
+      style={{ background: "linear-gradient(rgba(30,24,18,0.68), rgba(30,24,18,0.78)), url('/images/soltar/09-cartas-de-soltar.png') center / cover no-repeat" }}
+    >
       <header className="mb-8">
         <span className="ornament mb-3">✾</span>
         <h1 className="font-serif text-display-sm text-cream mb-2">Cartas de Soltar</h1>
