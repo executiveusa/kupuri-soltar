@@ -10,7 +10,7 @@ export function PillarFooter({ locale = "es", light = false }: { locale?: string
         {pillars}
       </p>
       <p className={`mt-1.5 text-xs opacity-40 font-sans ${light ? "text-ink" : "text-cream"}`}>
-        SUELTA · Kupuri Media · {new Date().getFullYear()}
+        SOLTAR · Kupuri Media · {new Date().getFullYear()}
       </p>
     </footer>
   );

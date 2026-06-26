@@ -1,4 +1,4 @@
-# SUELTA Brand Kit — v1.0
+# SOLTAR Brand Kit — v1.0
 ## by Kupuri Media
 
 ---
@@ -9,7 +9,7 @@ A double-loop knot (interlocked teardrops / lemniscate) above the wordmark.
 
 ```
   ∞ ∞
- SUELTA
+ SOLTAR
 ```
 
 **Rules:**
@@ -153,7 +153,7 @@ A double-loop knot (interlocked teardrops / lemniscate) above the wordmark.
 
 ## Kupuri Media Attribution
 
-SUELTA is a product of **Kupuri Media**.
-- Brand: SUELTA / SUELTA
+SOLTAR is a product of **Kupuri Media**.
+- Brand: SOLTAR
 - Producer: Kupuri Media
-- Footer always: `SUELTA · Kupuri Media · [year]`
+- Footer always: `SOLTAR · Kupuri Media · [year]`

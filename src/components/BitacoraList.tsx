@@ -3,7 +3,10 @@ import { essays } from "@/content/soltar/essays";
 
 export function BitacoraList() {
   return (
-    <div className="atmo-screen px-6 py-12 max-w-2xl mx-auto min-h-screen">
+    <div
+      className="atmo-screen px-6 py-12 max-w-2xl mx-auto min-h-screen"
+      style={{ background: "linear-gradient(rgba(30,24,18,0.72), rgba(30,24,18,0.82)), url('/images/soltar/08-bitacora.png') center / cover no-repeat" }}
+    >
       <header className="mb-10">
         <span className="ornament mb-3">✾</span>
         <h1 className="font-serif text-display-sm text-cream mb-2">Bitácora</h1>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ClosingPage() {
   return (
     <>
-      <main id="main-content" className="bg-gradient-parchment">
+      <main id="main-content">
         <ClosingInvitation />
       </main>
       <PillarFooter />

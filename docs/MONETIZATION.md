@@ -1,4 +1,4 @@
-# Monetization — SOLTAR / SUELTA
+# Monetization — SOLTAR
 
 ## Free Core (Always Free)
 

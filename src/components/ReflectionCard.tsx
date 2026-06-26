@@ -20,7 +20,10 @@ export function ReflectionCard({ step, locale = "es" }: { step: SoltarStep; loca
   };
 
   return (
-    <div className="atmo-screen flex flex-col justify-center px-6 py-16 max-w-xl mx-auto min-h-screen">
+    <div
+      className="atmo-screen flex flex-col justify-center px-6 py-16 max-w-xl mx-auto min-h-screen"
+      style={{ background: "linear-gradient(rgba(30,24,18,0.68), rgba(30,24,18,0.78)), url('/images/soltar/06-reflection-gratitude.png') center / cover no-repeat" }}
+    >
       <div className="mb-8 text-center animate-rise">
         <span className="ornament mb-4">✾</span>
         <p className="text-xs uppercase tracking-[0.25em] text-cream-dim/50 font-sans mb-1">

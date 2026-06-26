@@ -19,27 +19,46 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "SUELTA — No es solo limpiar. Es soltar.",
-    template: "%s · SUELTA",
+    default: "SOLTAR — No es solo limpiar. Es soltar.",
+    template: "%s · SOLTAR",
   },
   description:
-    "Un camino tranquilo para ordenar afuera y hacer espacio adentro. Un ritual japonés para dejar ir y renacer.",
+    "Un camino tranquilo para ordenar afuera y hacer espacio adentro.",
+  applicationName: "SOLTAR",
   metadataBase: new URL("https://kupuri-soltar.vercel.app"),
   openGraph: {
-    title: "SUELTA by Kupuri Media",
+    title: "SOLTAR by Kupuri Media",
     description:
-      "No es solo limpiar. Es soltar. Un camino tranquilo para ordenar afuera y hacer espacio adentro.",
+      "Un camino tranquilo para ordenar afuera y hacer espacio adentro.",
+    siteName: "SOLTAR",
     locale: "es_MX",
     type: "website",
-    images: ["/images/soltar/01-hero-soltar.png"],
+    images: [
+      {
+        url: "/images/soltar/01-hero-soltar.png",
+        width: 1600,
+        height: 1000,
+        alt: "SOLTAR — No es solo limpiar. Es soltar.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SUELTA by Kupuri Media",
-    description: "No es solo limpiar. Es soltar.",
+    title: "SOLTAR by Kupuri Media",
+    description:
+      "Un camino tranquilo para ordenar afuera y hacer espacio adentro.",
     images: ["/images/soltar/01-hero-soltar.png"],
   },
-  keywords: ["soltar", "suelta", "bienestar", "konmari", "kupuri media", "ritual japonés", "mujer", "orden"],
+  keywords: [
+    "soltar",
+    "bienestar",
+    "orden emocional",
+    "konmari",
+    "kupuri media",
+    "mujer",
+    "ritual",
+    "reflexión",
+  ],
 };
 
 export default function RootLayout({
