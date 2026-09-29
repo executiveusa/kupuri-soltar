@@ -75,9 +75,9 @@ body {
 .atmo-screen {
   position: relative;
   min-height: 100vh;
-  background:
-    linear-gradient(rgba(30,24,18,0.72), rgba(30,24,18,0.82)),
-    url('/images/soltar/02-welcome-ritual.png') center top / cover no-repeat;
+  /* Avoid the text-and-button baked into 02-welcome-ritual.png: it collided
+     with real controls on every phone viewport using this shared class. */
+  background: linear-gradient(165deg, var(--atmo-dark), var(--atmo-deep));
 }
 .atmo-screen::before {
   display: none;

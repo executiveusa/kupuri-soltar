@@ -6,7 +6,7 @@ import { PillarFooter } from "@/components/PillarFooter";
 import { getStep, soltarSteps } from "@/content/soltar/steps";
 
 interface Props {
-  params: { step: string };
+  params: Promise<{ step: string }>;
 }
 
 export function generateStaticParams() {
@@ -14,7 +14,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const step = getStep(params.step);
+  const { step: stepId } = await params;
+  const step = getStep(stepId);
   if (!step) return {};
   return {
     title: `Paso ${step.order}: ${step.es}`,
@@ -22,8 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function StepIntroPage({ params }: Props) {
-  const step = getStep(params.step);
+export default async function StepIntroPage({ params }: Props) {
+  const { step: stepId } = await params;
+  const step = getStep(stepId);
   if (!step) notFound();
 
   return (

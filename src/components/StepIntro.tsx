@@ -17,7 +17,7 @@ export function StepIntro({ step, locale = "es" }: StepIntroProps) {
       aria-labelledby={`step-${step.id}-heading`}
     >
       <div className="mb-8 text-center animate-rise">
-        <p className="text-xs uppercase tracking-[0.25em] text-cream-dim opacity-50 font-sans mb-3">
+        <p className="text-xs uppercase tracking-[0.25em] text-cream-dim/85 font-sans mb-3">
           Paso {step.order} de 5
         </p>
         <div className="kanji mb-3" aria-label={step.ja}>{step.ja}</div>
@@ -27,12 +27,12 @@ export function StepIntro({ step, locale = "es" }: StepIntroProps) {
         >
           {stepName}
         </h1>
-        <p className="mt-2 text-sakura text-sm font-sans italic">{description}</p>
+        <p className="mt-2 text-sakura text-base font-sans italic">{description}</p>
       </div>
 
       <hr className="divider" />
 
-      <p className="font-serif text-cream-dim text-lg leading-relaxed animate-rise">
+      <p className="font-serif text-cream text-xl leading-relaxed animate-rise">
         {intro}
       </p>
 
@@ -42,7 +42,7 @@ export function StepIntro({ step, locale = "es" }: StepIntroProps) {
         </Link>
         <Link
           href="/journey"
-          className="font-serif text-cream-dim hover:text-cream italic text-sm underline-offset-4 hover:underline py-2 transition-colors"
+          className="font-serif text-cream hover:text-sakura italic text-sm underline-offset-4 hover:underline py-2 transition-colors"
         >
           Volver al camino
         </Link>
