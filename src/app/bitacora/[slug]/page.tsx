@@ -6,7 +6,7 @@ import { PillarFooter } from "@/components/PillarFooter";
 import { essays } from "@/content/soltar/essays";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
@@ -14,7 +14,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const essay = essays.find((e) => e.slug === params.slug);
+  const { slug } = await params;
+  const essay = essays.find((e) => e.slug === slug);
   if (!essay) return {};
   return {
     title: essay.title,
@@ -22,8 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function EssayPage({ params }: Props) {
-  const essay = essays.find((e) => e.slug === params.slug);
+export default async function EssayPage({ params }: Props) {
+  const { slug } = await params;
+  const essay = essays.find((e) => e.slug === slug);
   if (!essay) notFound();
 
   return (

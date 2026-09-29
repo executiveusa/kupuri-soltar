@@ -1,8 +1,7 @@
+@config "../../tailwind.config.ts";
+@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* ── Brand tokens ──────────────────────────────────────────── */
 :root {
@@ -76,9 +75,9 @@ body {
 .atmo-screen {
   position: relative;
   min-height: 100vh;
-  background:
-    linear-gradient(rgba(30,24,18,0.72), rgba(30,24,18,0.82)),
-    url('/images/soltar/02-welcome-ritual.png') center top / cover no-repeat;
+  /* Avoid the text-and-button baked into 02-welcome-ritual.png: it collided
+     with real controls on every phone viewport using this shared class. */
+  background: linear-gradient(165deg, var(--atmo-dark), var(--atmo-deep));
 }
 .atmo-screen::before {
   display: none;
