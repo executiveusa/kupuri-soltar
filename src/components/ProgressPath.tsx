@@ -1,30 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { FiveStepPath } from "./FiveStepPath";
 import { soltarSteps } from "@/content/soltar/steps";
 
+const subscribe = (listener: () => void) => {
+  window.addEventListener("storage", listener);
+  window.addEventListener("focus", listener);
+  return () => {
+    window.removeEventListener("storage", listener);
+    window.removeEventListener("focus", listener);
+  };
+};
+const getProgressSnapshot = () => soltarSteps.map((s) =>
+  localStorage.getItem(`soltar_reflection_${s.id}`) !== null ? "1" : "0"
+).join("");
+const getServerProgressSnapshot = () => "";
+
 export function ProgressPath() {
-  const [completedSteps, setCompletedSteps] = useState<string[]>([]);
-  const [currentStep, setCurrentStep] = useState<string | undefined>(undefined);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const completed = soltarSteps
-      .filter((s) => {
-        const reflection = localStorage.getItem(`soltar_reflection_${s.id}`);
-        return reflection !== null;
-      })
-      .map((s) => s.id);
-
-    setCompletedSteps(completed);
-
-    const next = soltarSteps.find((s) => !completed.includes(s.id));
-    setCurrentStep(next?.id);
-    setReady(true);
-  }, []);
-
+  // Empty snapshot is a stable server/hydration placeholder; the client reads
+  // localStorage only after hydration, then updates on storage/focus events.
+  const snapshot = useSyncExternalStore(subscribe, getProgressSnapshot, getServerProgressSnapshot);
+  const ready = snapshot.length === soltarSteps.length;
+  const completedSteps = ready ? soltarSteps.filter((_, i) => snapshot[i] === "1").map(s => s.id) : [];
+  const next = ready ? soltarSteps.find(s => !completedSteps.includes(s.id)) : undefined;
+  const currentStep = next?.id;
   const done = completedSteps.length;
 
   if (!ready) {

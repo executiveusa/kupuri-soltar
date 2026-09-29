@@ -1,19 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { localeLabels, type Locale } from "@/content/soltar/i18n";
 
-export function LanguageSettings() {
-  const [locale, setLocale] = useState<Locale>("es");
+const subscribe = (listener: () => void) => {
+  window.addEventListener("storage", listener);
+  window.addEventListener("soltar-locale-change", listener);
+  return () => {
+    window.removeEventListener("storage", listener);
+    window.removeEventListener("soltar-locale-change", listener);
+  };
+};
+const getLocale = (): Locale => {
+  const saved = localStorage.getItem("soltar_locale");
+  return saved && saved in localeLabels ? saved as Locale : "es";
+};
+const getServerLocale = (): Locale => "es";
 
-  useEffect(() => {
-    const saved = localStorage.getItem("soltar_locale") as Locale | null;
-    if (saved && saved in localeLabels) setLocale(saved);
-  }, []);
+export function LanguageSettings() {
+  const locale = useSyncExternalStore(subscribe, getLocale, getServerLocale);
 
   const handleChange = (l: Locale) => {
-    setLocale(l);
     localStorage.setItem("soltar_locale", l);
+    window.dispatchEvent(new Event("soltar-locale-change"));
   };
 
   return (
